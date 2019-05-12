@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -ue
+
+# Running the tests
+
+for i in python/test/test_*.py
+do
+    echo $i:
+    python3 $i 2>&1
+done | tee ${AUTOPKGTEST_TMP}/test.log
+
+# Examining the results
+
+if grep --silent ^FAILED ${AUTOPKGTEST_TMP}/test.log
+then
+    echo Failed tests exist
+    exit 1
+fi
