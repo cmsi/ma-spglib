@@ -14,10 +14,9 @@ mkdir -p $(dirname $BUILD_DIR)
 cd $(dirname $BUILD_DIR)
 cp -p $DATA_DIR/${PACKAGE}_${VERSION_BASE}.orig.tar.gz .
 tar zxf ${PACKAGE}_${VERSION_BASE}.orig.tar.gz
-if test $(lsb_release -c -s) = "stretch"; then
-  cp -frp $SCRIPT_DIR/debian $BUILD_DIR
-else
-  cp -frp $SCRIPT_DIR/debian8 $BUILD_DIR/debian
+cp -frp $SCRIPT_DIR/debian $BUILD_DIR
+if test $(lsb_release -c -s) = "stretch"; then :; else
+  cp -frp $SCRIPT_DIR/debian8/* $BUILD_DIR/debian
 fi
 
 cd $BUILD_DIR
