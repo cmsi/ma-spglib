@@ -1,1 +1,2 @@
 usr/lib/libsymspg.so.* usr/lib/##DEB_HOST_MULTIARCH##
+debian/changelog.sid usr/share/doc/libsymspg1

@@ -1,0 +1,2 @@
+usr/lib/libsymspg.so.* usr/lib
+debian/changelog.sid usr/share/doc/libsymspg1
