@@ -1,4 +1,0 @@
-usr/include
-usr/lib/libsymspg.a usr/lib
-usr/lib/libsymspg.so usr/lib
-debian/changelog.sid usr/share/doc/libsymspg-dev

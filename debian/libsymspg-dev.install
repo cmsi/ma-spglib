@@ -1,0 +1,3 @@
+usr/include
+usr/lib/*/libsymspg.a
+usr/lib/*/libsymspg.so

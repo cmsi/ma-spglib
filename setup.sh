@@ -15,9 +15,9 @@ cd $(dirname $BUILD_DIR)
 cp -p $DATA_DIR/${PACKAGE}_${VERSION_BASE}.orig.tar.gz .
 tar zxf ${PACKAGE}_${VERSION_BASE}.orig.tar.gz
 cp -frp $SCRIPT_DIR/debian $BUILD_DIR
-if test $(lsb_release -c -s) = "stretch"; then :; else
-  cp -frp $SCRIPT_DIR/debian8/* $BUILD_DIR/debian
-fi
+# if [ $(lsb_release -c -s) = "jessie" -o $(lsb_release -c -s) = "xenial" ]; then
+#   cp -frp $SCRIPT_DIR/debian8/* $BUILD_DIR/debian
+# fi
 
 cd $BUILD_DIR
 sudo apt-get update

@@ -12,22 +12,24 @@ override_dh_autoreconf:
 
 override_dh_auto_configure:
 	dh_auto_configure
-	for TPL in debian/templates/*; \
-	do sed -e "s@##DEB_HOST_MULTIARCH##@$(DEB_HOST_MULTIARCH)@g" \
-		$${TPL} > debian/$$(basename $${TPL}); \
-	done
 
 override_dh_auto_build:
 	dh_auto_build
-	dh_auto_build -O--buildsystem=pybuild -- --dir python
+	dh_auto_build --buildsystem=pybuild -- --dir python
 
 override_dh_auto_install:
 	dh_auto_install
-	dh_auto_install -O--buildsystem=pybuild -- --dir python
+	dh_auto_install --buildsystem=pybuild -- --dir python
+	ln -s $(DEB_HOST_MULTIARCH)/libsymspg.so debian/tmp/usr/lib
+	rm debian/tmp/usr/lib/libsymspg.so
 
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 override_dh_auto_test:
-	dh_auto_test -O--buildsystem=pybuild -- --dir python
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+# Tests on mips take too long, and are killed due to inactivity
+ifneq ($(DEB_BUILD_ARCH), mips)
+	# dh_auto_test --buildsystem=pybuild -- --dir python
+	/bin/true
+endif
 endif
 
 override_dh_makeshlibs:
@@ -39,8 +41,5 @@ override_dh_installchangelogs:
 
 override_dh_auto_clean:
 	dh_auto_clean
-	dh_auto_clean -O--buildsystem=pybuild -- --dir python
+	dh_auto_clean --buildsystem=pybuild -- --dir python
 	rm -rf python/spglib.egg-info
-	for TPL in debian/templates/*; \
-	do rm -f debian/$$(basename $${TPL}); \
-	done

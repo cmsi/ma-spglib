@@ -1,3 +1,15 @@
+spglib (1.15.1-1) unstable; urgency=medium
+
+  * New upstream version 1.15.1
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Tue, 21 Jul 2020 23:47:42 +0900
+
+spglib (1.14.1-1) unstable; urgency=medium
+
+  * New upstream version 1.14.1
+
+ -- Synge Todo <wistaria@phys.s.u-tokyo.ac.jp>  Sat, 07 Sep 2019 10:17:12 +0900
+
 spglib (1.12.2-1) unstable; urgency=medium
 
   * Import 1.12.2-1 from sid
